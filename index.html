@@ -3,132 +3,1321 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mankato Islamic Center</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+  <title>Mankato Islamic Center — Mosque & Community Center in Mankato, MN</title>
+  <meta name="description"
+    content="Mankato Islamic Center is a mosque and community hub serving Muslims across South Central Minnesota. Find prayer times, directions, events, and ways to support the masjid.">
+  <meta name="theme-color" content="#0d5c3f">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Mankato Islamic Center">
+  <meta property="og:description" content="A mosque and community center serving Muslims across South Central Minnesota.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="/img/community-scaled.jpg">
+
+  <link rel="icon" href="/img/logo.png" type="image/png">
+  <link rel="apple-touch-icon" href="/img/logo.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
 
   <style>
-    .container {
-      max-width: 1000px;
+    /* ============================================================
+       Design tokens
+       ============================================================ */
+    :root {
+      --green-900: #073b28;
+      --green-800: #0a4a31;
+      --green-700: #0d5c3f;
+      --green-600: #117a52;
+      --green-50: #eef6f1;
+      --gold-600: #b8902a;
+      --gold-500: #d4af37;
+      --gold-100: #f6edd2;
+      --ink: #1c2421;
+      --muted: #5b6b63;
+      --cream: #faf8f2;
+      --white: #ffffff;
+      --line: #e6e2d6;
+      --shadow-sm: 0 1px 3px rgba(7, 59, 40, .08), 0 1px 2px rgba(7, 59, 40, .06);
+      --shadow-md: 0 10px 30px -12px rgba(7, 59, 40, .25);
+      --shadow-lg: 0 24px 60px -20px rgba(7, 59, 40, .35);
+      --radius: 16px;
+      --radius-sm: 10px;
+      --container: 1140px;
     }
 
-    .big-banner {
-      max-width: 100vw;
-      margin-left: calc(50% - 50vw);
-      padding: 0 15px;
-      position: relative;
-      background-size: cover;
-      background-position: 50%;
-      min-height: 430px;
-      opacity: .6;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    /* ============================================================
+       Reset / base
+       ============================================================ */
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
-    .big-banner-text {
-      color: black;
-      text-shadow: 2px 0 0 #fff, 0 -2px 0 #fff, 0 2px 0 #fff, -2px 0 0 #fff;
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 84px;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      color: var(--ink);
+      background: var(--cream);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.15;
+      letter-spacing: -.02em;
+      margin: 0 0 .5em;
+      font-weight: 800;
+    }
+
+    h2.section-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      text-align: center;
+    }
+
+    p {
+      margin: 0 0 1rem;
+    }
+
+    a {
+      color: var(--green-700);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(100% - 2.5rem, var(--container));
+      margin-inline: auto;
+    }
+
+    section {
+      padding: clamp(3.5rem, 8vw, 6rem) 0;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-size: .8rem;
       font-weight: 700;
-      font-size: larger;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--gold-600);
+      margin-bottom: .75rem;
     }
-    .my-5 {
-      margin-top: 5rem !important;
-      margin-bottom: 5rem !important;
+
+    .eyebrow::before {
+      content: "";
+      width: 26px;
+      height: 2px;
+      background: var(--gold-500);
     }
-    .image-list img {
+
+    .center {
+      text-align: center;
+    }
+
+    .lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 56ch;
+    }
+
+    .center .lead {
+      margin-inline: auto;
+    }
+
+    /* ============================================================
+       Buttons
+       ============================================================ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .55rem;
+      font: inherit;
+      font-weight: 700;
+      font-size: .98rem;
+      padding: .85rem 1.5rem;
+      border-radius: 999px;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform .15s ease, box-shadow .2s ease, background .2s ease;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    .btn:hover {
+      text-decoration: none;
+      transform: translateY(-2px);
+    }
+
+    .btn-gold {
+      background: var(--gold-500);
+      color: #3a2e07;
+      box-shadow: var(--shadow-md);
+    }
+
+    .btn-gold:hover {
+      background: var(--gold-600);
+      color: #2a2205;
+    }
+
+    .btn-green {
+      background: var(--green-700);
+      color: #fff;
+    }
+
+    .btn-green:hover {
+      background: var(--green-800);
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255, 255, 255, .55);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255, 255, 255, .12);
+      color: #fff;
+    }
+
+    .btn-ghost {
+      background: #fff;
+      color: var(--green-700);
+      border-color: var(--line);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--green-600);
+    }
+
+    /* ============================================================
+       Header / nav
+       ============================================================ */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250, 248, 242, .85);
+      backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      height: 72px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+      font-weight: 800;
+      color: var(--green-800);
+    }
+
+    .brand:hover {
+      text-decoration: none;
+    }
+
+    .brand img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+    }
+
+    .brand b {
+      font-size: 1.02rem;
+      line-height: 1.1;
+      display: block;
+    }
+
+    .brand span {
+      font-size: .72rem;
+      font-weight: 600;
+      color: var(--muted);
+      letter-spacing: .04em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: .35rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+
+    .nav-links a:not(.btn) {
+      color: var(--ink);
+      font-weight: 600;
+      font-size: .95rem;
+      padding: .5rem .85rem;
+      border-radius: 8px;
+    }
+
+    .nav-links a:not(.btn):hover {
+      background: var(--green-50);
+      color: var(--green-700);
+      text-decoration: none;
+    }
+
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: 0;
+      cursor: pointer;
+      padding: .5rem;
+    }
+
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--ink);
+      border-radius: 2px;
+      transition: .25s;
+    }
+
+    .nav-toggle span+span {
+      margin-top: 6px;
+    }
+
+    /* ============================================================
+       Hero
+       ============================================================ */
+    .hero {
+      position: relative;
+      color: #fff;
+      isolation: isolate;
+      padding: clamp(4rem, 11vw, 7.5rem) 0 clamp(5.5rem, 10vw, 8rem);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      background: linear-gradient(120deg, rgba(7, 59, 40, .92), rgba(13, 92, 63, .78)),
+        url(/img/community-scaled.jpg) center 35% / cover no-repeat;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      opacity: .5;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='104' viewBox='0 0 60 104'%3E%3Cpath fill='none' stroke='%23d4af37' stroke-opacity='.18' stroke-width='1.2' d='M30 0l30 17.3v34.6L30 69.3 0 51.9V17.3zM30 34.7l30 17.3v34.6L30 104 0 86.6V52z'/%3E%3C/svg%3E");
+    }
+
+    .hero-inner {
+      max-width: 720px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 6vw, 4rem);
+      margin-bottom: .4em;
+    }
+
+    .hero .arabic {
+      font-family: 'Amiri', serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      color: var(--gold-500);
+      margin-bottom: .6rem;
+      font-weight: 700;
+    }
+
+    .hero p {
+      font-size: clamp(1.05rem, 2.2vw, 1.25rem);
+      color: rgba(255, 255, 255, .9);
+      max-width: 56ch;
+      margin-bottom: 2rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .85rem;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+      font-size: .95rem;
+      color: rgba(255, 255, 255, .85);
+    }
+
+    .hero-meta div {
+      display: flex;
+      align-items: center;
+      gap: .5rem;
+    }
+
+    .hero-meta svg {
+      flex: none;
+      color: var(--gold-500);
+    }
+
+    /* ============================================================
+       Prayer times
+       ============================================================ */
+    .prayer {
+      background: var(--green-800);
+      color: #fff;
+      position: relative;
+      z-index: 2;
+      margin-top: -3.5rem;
+    }
+
+    .prayer-card {
+      background: linear-gradient(160deg, var(--green-700), var(--green-900));
+      border: 1px solid rgba(212, 175, 55, .25);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-lg);
+      padding: clamp(1.5rem, 4vw, 2.5rem);
+    }
+
+    .prayer-head {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: .5rem 1.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+      padding-bottom: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .prayer-head h2 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    .prayer-dates {
+      font-size: .92rem;
+      color: rgba(255, 255, 255, .8);
+      text-align: right;
+    }
+
+    .prayer-dates .hijri {
+      color: var(--gold-500);
+      font-weight: 700;
+    }
+
+    .prayer-grid {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: .75rem;
+    }
+
+    .ptile {
+      background: rgba(255, 255, 255, .06);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: var(--radius-sm);
+      padding: 1rem .5rem;
+      text-align: center;
+      transition: .25s;
+    }
+
+    .ptile .name {
+      font-size: .82rem;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .7);
+      margin-bottom: .35rem;
+    }
+
+    .ptile .time {
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .ptile .time small {
+      font-size: .7rem;
+      font-weight: 600;
+      opacity: .7;
+    }
+
+    .ptile.active {
+      background: var(--gold-500);
+      border-color: var(--gold-500);
+      color: #2a2205;
+      transform: translateY(-4px);
+      box-shadow: 0 12px 24px -10px rgba(212, 175, 55, .6);
+    }
+
+    .ptile.active .name {
+      color: #5a4708;
+    }
+
+    .prayer-foot {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: .75rem;
+      margin-top: 1.5rem;
+      font-size: .92rem;
+      color: rgba(255, 255, 255, .82);
+    }
+
+    .jummah-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: rgba(212, 175, 55, .15);
+      border: 1px solid rgba(212, 175, 55, .35);
+      color: var(--gold-500);
+      padding: .4rem .9rem;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    /* ============================================================
+       Generic two-col / about
+       ============================================================ */
+    .split {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: clamp(2rem, 5vw, 4rem);
+      align-items: center;
+    }
+
+    .about-media {
+      position: relative;
+    }
+
+    .about-media img {
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-md);
+      width: 100%;
+      object-fit: cover;
+      aspect-ratio: 4 / 3;
+    }
+
+    .about-media .badge {
+      position: absolute;
+      bottom: -22px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-sm);
+      box-shadow: var(--shadow-md);
+      padding: .85rem 1.4rem;
+      display: flex;
+      gap: 1.6rem;
+      text-align: center;
+      white-space: nowrap;
+    }
+
+    .about-media .badge b {
+      display: block;
+      font-size: 1.3rem;
+      color: var(--green-700);
+    }
+
+    .about-media .badge span {
+      font-size: .72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+
+    /* ============================================================
+       Feature cards
+       ============================================================ */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      box-shadow: var(--shadow-sm);
+      transition: .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--green-600);
+    }
+
+    .card .ico {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--green-50);
+      color: var(--green-700);
+      margin-bottom: 1rem;
+    }
+
+    .card h3 {
+      font-size: 1.2rem;
+      margin-bottom: .35rem;
+    }
+
+    .card p {
+      color: var(--muted);
+      margin: 0;
+      font-size: .96rem;
+    }
+
+    /* ============================================================
+       Gallery
+       ============================================================ */
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+
+    .gallery a {
+      display: block;
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      aspect-ratio: 4 / 3;
+    }
+
+    .gallery img {
       width: 100%;
       height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+
+    .gallery a:hover img {
+      transform: scale(1.06);
+    }
+
+    /* ============================================================
+       Donate
+       ============================================================ */
+    .donate {
+      background:
+        radial-gradient(120% 120% at 100% 0%, rgba(212, 175, 55, .12), transparent 55%),
+        var(--green-50);
+    }
+
+    .donate-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .pay-card {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .pay-card .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-weight: 700;
+      color: var(--green-700);
+      background: var(--green-50);
+      border-radius: 999px;
+      padding: .35rem .85rem;
+      font-size: .85rem;
+      margin-bottom: 1rem;
+    }
+
+    .pay-card h3 {
+      font-size: 1.35rem;
+    }
+
+    .pay-card dl {
+      margin: 1rem 0 0;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: .5rem 1rem;
+      font-size: .95rem;
+    }
+
+    .pay-card dt {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .pay-card dd {
+      margin: 0;
+      font-weight: 600;
+      word-break: break-word;
+    }
+
+    .pay-card .btn {
+      margin-top: 1.5rem;
+    }
+
+    /* ============================================================
+       Visit
+       ============================================================ */
+    .visit-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: clamp(1.5rem, 4vw, 3rem);
+      margin-top: 3rem;
+      align-items: stretch;
+    }
+
+    .info-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    .info-list li {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .info-list .ico {
+      flex: none;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: var(--green-700);
+      color: #fff;
+    }
+
+    .info-list b {
+      display: block;
+      font-size: 1.02rem;
+    }
+
+    .info-list span {
+      color: var(--muted);
+      font-size: .96rem;
+    }
+
+    .map-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      min-height: 340px;
+      border: 1px solid var(--line);
+    }
+
+    .map-wrap iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 340px;
+      border: 0;
+      display: block;
+    }
+
+    /* ============================================================
+       Footer
+       ============================================================ */
+    .footer {
+      background: var(--green-900);
+      color: rgba(255, 255, 255, .8);
+      padding: 3.5rem 0 2rem;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 2rem;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+    }
+
+    .footer .brand b,
+    .footer h4 {
+      color: #fff;
+    }
+
+    .footer .brand span {
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .footer p {
+      font-size: .95rem;
+      color: rgba(255, 255, 255, .7);
+      max-width: 34ch;
+    }
+
+    .footer h4 {
+      font-size: .85rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      color: var(--gold-500);
+    }
+
+    .footer ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: .6rem;
+    }
+
+    .footer a {
+      color: rgba(255, 255, 255, .8);
+      font-size: .95rem;
+    }
+
+    .footer a:hover {
+      color: var(--gold-500);
+    }
+
+    .socials {
+      display: flex;
+      gap: .6rem;
+      margin-top: 1rem;
+    }
+
+    .socials a {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      background: rgba(255, 255, 255, .08);
+      color: #fff;
+    }
+
+    .socials a:hover {
+      background: var(--gold-500);
+      color: #2a2205;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      padding-top: 1.75rem;
+      font-size: .88rem;
+      color: rgba(255, 255, 255, .55);
+    }
+
+    /* ============================================================
+       Responsive
+       ============================================================ */
+    @media (max-width: 880px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-links {
+        position: fixed;
+        inset: 72px 0 auto 0;
+        flex-direction: column;
+        align-items: stretch;
+        gap: .25rem;
+        background: var(--cream);
+        border-bottom: 1px solid var(--line);
+        padding: 1rem 1.25rem 1.5rem;
+        box-shadow: var(--shadow-md);
+        transform: translateY(-150%);
+        transition: transform .3s ease;
+      }
+
+      .nav-links.open {
+        transform: translateY(0);
+      }
+
+      .nav-links a:not(.btn) {
+        padding: .8rem 1rem;
+      }
+
+      .nav-links .btn {
+        justify-content: center;
+        margin-top: .5rem;
+      }
+
+      .split,
+      .visit-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-media {
+        order: -1;
+      }
+
+      .cards,
+      .donate-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .prayer-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .prayer-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      .prayer-dates {
+        text-align: left;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
 
 <body>
-  <nav class="navbar navbar-expand navbar-light">
-    <div class="container">
-      <a class="navbar-brand" href="#">
-        <img src="/img/logo.png" alt="logo" style="max-width: 120px;">
+  <!-- ============================ Header ============================ -->
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="#top" aria-label="Mankato Islamic Center home">
+        <img src="/img/logo.png" alt="Mankato Islamic Center logo">
+        <span>
+          <b>Mankato Islamic Center</b>
+          <span>South Central Minnesota</span>
+        </span>
       </a>
-      <ul class="nav navbar-nav ms-auto fw-bold">
-        <li class="nav-item">
-          <a class="nav-link active" href="/index.html" aria-current="page">Home <span
-              class="visually-hidden">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/about.html">About</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="/donate.html">Donate</a>
-        </li>
+
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" id="navToggle">
+        <span></span><span></span><span></span>
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#prayer">Prayer Times</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#visit">Visit</a></li>
+        <li><a class="btn btn-gold" href="#donate">Donate</a></li>
       </ul>
     </div>
-  </nav>
-  <div class="text-center mt-4 mb-5">
-    <button type="button" class="btn btn-danger btn-lg"> <i class="bi bi-chat-heart"></i> Donate Now</button>
-  </div>
-  <div style="background-image:url(/img/community-scaled.jpg)" class="big-banner">
+  </header>
+
+  <span id="top"></span>
+
+  <!-- ============================ Hero ============================ -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <p class="arabic">السلام عليكم ورحمة الله</p>
+      <h1>A home for faith, family, and community in Mankato</h1>
+      <p>
+        The Mankato Islamic Center is an essential institution for Muslims across South Central
+        Minnesota — a place to pray, learn, gather, and grow together.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-gold" href="#donate">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.4 2 5 5.3 5c2 0 3.4 1.1 4.2 2.3h.9C11.3 6.1 12.7 5 14.7 5 18 5 19.6 8.4 22 11.7 19.5 16.4 12 21 12 21z"/></svg>
+          Support the Masjid
+        </a>
+        <a class="btn btn-outline" href="#prayer">View Prayer Times</a>
+      </div>
+      <div class="hero-meta">
+        <div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+          329 N Broad St, Mankato, MN
+        </div>
+        <div>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 1 3 5v6c0 5.5 3.8 10.7 9 12 5.2-1.3 9-6.5 9-12V5l-9-4z"/></svg>
+          Open daily for the five prayers
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Prayer times ============================ -->
+  <section class="prayer" id="prayer">
     <div class="container">
-      <div class="big-banner-text">
-        Mankato Islamic Center is an essential institution for all Muslims in South Central Minnesota to practice and
-        preserve our religious believes and values!
-      </div>
-    </div>
-  </div>
-
-  <div class="my-5 text-center">
-    <h2>Mankato Islamic Center</h2>
-    329 N Broad St, Mankato, MN 56001 | <a href="https://www.facebook.com/mankatoislamiccenter" target="_blank" rel="noreferrer noopener">Facebook </a> | <a href="/about">About </a> | <a href="/donate">Donate</a>
-  </div>
-
-  <div class="container my-5">
-    <div class="row">
-      <div class="col-md-6 my-2">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Follow Us on Facebook</h5>
-            <p class="card-text">Join us on Facebook to get latest updates and news.</p>
-            <a href="https://www.facebook.com/mankatoislamiccenter" class="btn btn-success">Go to Facebook</a>
+      <div class="prayer-card">
+        <div class="prayer-head">
+          <h2>Today&rsquo;s Prayer Times</h2>
+          <div class="prayer-dates">
+            <div id="gregDate">—</div>
+            <div class="hijri" id="hijriDate">Loading Islamic date…</div>
           </div>
         </div>
-      </div>
-      <div class="col-md-6 my-2">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">Donate</h5>
-            <p class="card-text">Learn about different ways you can donate to the center.</p>
-            <a href="/donate.html" class="btn btn-success">Go to Donate page</a>
-          </div>
+
+        <div class="prayer-grid" id="prayerGrid">
+          <!-- tiles injected by JS; static fallback below -->
+          <div class="ptile"><div class="name">Fajr</div><div class="time">—</div></div>
+          <div class="ptile"><div class="name">Sunrise</div><div class="time">—</div></div>
+          <div class="ptile"><div class="name">Dhuhr</div><div class="time">—</div></div>
+          <div class="ptile"><div class="name">Asr</div><div class="time">—</div></div>
+          <div class="ptile"><div class="name">Maghrib</div><div class="time">—</div></div>
+          <div class="ptile"><div class="name">Isha</div><div class="time">—</div></div>
+        </div>
+
+        <div class="prayer-foot">
+          <span class="jummah-pill">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 8V2L8 6m4-4 4 4M4 22V11a8 8 0 0 1 16 0v11"/></svg>
+            Jumu&rsquo;ah (Friday) — please call to confirm time
+          </span>
+          <span id="prayerNote">Times calculated for Mankato, MN (ISNA method).</span>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <div class="container image-list mb-4">
-    <h2>Some Images from Past Events</h2>
-    <div class="row">
-      <div class="mb-2 col-sm-6 col-md-4"><img src="/img/conf1prelude.jpg" alt="" srcset=""></div>
-      <div class="mb-2 col-sm-6 col-md-4"><img src="/img/conf2prelude-1024x768.jpg" alt="" srcset=""></div>
-      <div class="mb-2 col-sm-6 col-md-4"><img src="/img/conf3Introduction-1024x703.jpg" alt="" srcset=""></div>
-      <div class="mb-2 col-sm-6 col-md-4"><img src="/img/conf4Rashed-speaking-Abdi-Bukata-looking-on-1024x716.jpg" alt="" srcset=""></div>
-      <div class="mb-2 col-sm-6 col-md-4"><img src="/img/conf5Break-time-1024x683.jpg" alt="" srcset=""></div>
-      <div class="mb-2 col-sm-6 col-md-4"><img src="/img/conf6Again-Rashed-speaking-1024x683.jpg" alt="" srcset=""></div>
+  <!-- ============================ About ============================ -->
+  <section class="about" id="about">
+    <div class="container split">
+      <div>
+        <span class="eyebrow">About the Center</span>
+        <h2 style="font-size:clamp(1.8rem,4vw,2.6rem)">More than a house of prayer</h2>
+        <p>
+          Southern Minnesota is becoming an increasingly diverse region, and Muslims from all corners
+          of the globe are among the fastest-growing parts of the Greater Mankato community —
+          students and faculty, medical and nursing staff, non-profit workers, and neighbors in
+          every walk of life.
+        </p>
+        <p>
+          As that community grows, so does the need to meet its spiritual needs. The Mankato Islamic
+          Center serves as a hub for area Muslims to meet, pray, receive guidance, and discuss
+          community affairs. It is an essential institution for all of us in South Central Minnesota
+          to practice and preserve our faith and values.
+        </p>
+        <p>
+          We are currently raising funds to renovate the entire building so it can better serve both
+          the Muslim and non-Muslim communities in the area.
+        </p>
+        <a class="btn btn-green" href="#donate" style="margin-top:.5rem">Join the renovation effort</a>
+      </div>
+      <div class="about-media">
+        <img src="/img/community-scaled.jpg" alt="Members of the Mankato Islamic Center community gathered together">
+        <div class="badge">
+          <div><b>2</b><span>Mosques in&nbsp;the&nbsp;area</span></div>
+          <div><b>All</b><span>Welcome</span></div>
+          <div><b>5×</b><span>Daily prayers</span></div>
+        </div>
+      </div>
     </div>
-  </div>
 
-  <footer class="bg-secondary text-white text-center fixed-bottom">
-    All rights reserved | Mankato Islamic Center
+    <div class="container">
+      <div class="cards">
+        <div class="card">
+          <div class="ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 4 7v2h16V7l-8-4zM6 11v6H4v2h16v-2h-2v-6h-2v6h-3v-6h-2v6H8v-6H6z"/></svg>
+          </div>
+          <h3>Daily Prayers</h3>
+          <p>The masjid is open for all five daily prayers and the Friday Jumu&rsquo;ah congregation.</p>
+        </div>
+        <div class="card">
+          <div class="ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10zm0 2c-5 0-9 2.7-9 6v2h18v-2c0-3.3-4-6-9-6z"/></svg>
+          </div>
+          <h3>Community Hub</h3>
+          <p>A gathering place for families, students, and newcomers to connect and support one another.</p>
+        </div>
+        <div class="card">
+          <div class="ico">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7.5-4.6-10-9.3C.4 8.4 2 5 5.3 5c2 0 3.4 1.1 4.2 2.3h.9C11.3 6.1 12.7 5 14.7 5 18 5 19.6 8.4 22 11.7 19.5 16.4 12 21 12 21z"/></svg>
+          </div>
+          <h3>Guidance &amp; Service</h3>
+          <p>Spiritual guidance, education, and a place to discuss community affairs and give back.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Events / gallery ============================ -->
+  <section class="events" id="events" style="background:var(--white)">
+    <div class="container center">
+      <span class="eyebrow" style="justify-content:center">Our Community</span>
+      <h2 class="section-title">Moments from past events</h2>
+      <p class="lead">Glimpses of conferences, lectures, and gatherings that bring our community together.</p>
+    </div>
+    <div class="container">
+      <div class="gallery">
+        <a href="/img/conf1prelude.jpg" target="_blank" rel="noopener"><img src="/img/conf1prelude.jpg" alt="Community conference prelude" loading="lazy"></a>
+        <a href="/img/conf2prelude-1024x768.jpg" target="_blank" rel="noopener"><img src="/img/conf2prelude-1024x768.jpg" alt="Attendees gathering before the program" loading="lazy"></a>
+        <a href="/img/conf3Introduction-1024x703.jpg" target="_blank" rel="noopener"><img src="/img/conf3Introduction-1024x703.jpg" alt="Introduction at the conference" loading="lazy"></a>
+        <a href="/img/conf4Rashed-speaking-Abdi-Bukata-looking-on-1024x716.jpg" target="_blank" rel="noopener"><img src="/img/conf4Rashed-speaking-Abdi-Bukata-looking-on-1024x716.jpg" alt="Speaker addressing the audience" loading="lazy"></a>
+        <a href="/img/conf5Break-time-1024x683.jpg" target="_blank" rel="noopener"><img src="/img/conf5Break-time-1024x683.jpg" alt="Community members during a break" loading="lazy"></a>
+        <a href="/img/conf6Again-Rashed-speaking-1024x683.jpg" target="_blank" rel="noopener"><img src="/img/conf6Again-Rashed-speaking-1024x683.jpg" alt="Speaker continuing the talk" loading="lazy"></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Donate ============================ -->
+  <section class="donate" id="donate">
+    <div class="container center">
+      <span class="eyebrow" style="justify-content:center">Support Us</span>
+      <h2 class="section-title">Help renovate the masjid</h2>
+      <p class="lead">
+        Your generous contribution helps us renovate the building and improve a place of worship and
+        cultural center for the Muslim community in Mankato and surrounding communities. Every gift,
+        large or small, is deeply appreciated.
+      </p>
+    </div>
+    <div class="container">
+      <div class="donate-grid">
+        <div class="pay-card">
+          <span class="tag">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 6h18v2H3V6zm0 4h18v8H3v-8zm2 3v2h6v-2H5z"/></svg>
+            Card / PayPal
+          </span>
+          <h3>Donate online</h3>
+          <p style="color:var(--muted)">
+            Give securely with your debit or credit card through PayPal — no PayPal account required.
+          </p>
+          <a class="btn btn-green"
+            href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=KBDEJSUFA9BAG&amp;source=url"
+            target="_blank" rel="noopener noreferrer">
+            Donate with PayPal
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M5 12h12l-4-4 1.4-1.4L21 12l-6.6 5.4L13 16l4-4H5z"/></svg>
+          </a>
+        </div>
+
+        <div class="pay-card">
+          <span class="tag">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h16v4H4V4zm0 6h16v10H4V10zm3 3v2h5v-2H7z"/></svg>
+            Bank transfer
+          </span>
+          <h3>Donate via Zelle</h3>
+          <p style="color:var(--muted)">Send directly from your bank app using these details:</p>
+          <dl>
+            <dt>First name</dt>
+            <dd>Mankato Islamic Center</dd>
+            <dt>Bank</dt>
+            <dd>Wells Fargo (Savings)</dd>
+            <dt>Account #</dt>
+            <dd>8100508889</dd>
+            <dt>Address</dt>
+            <dd>329 North Broad Street, Mankato, MN 56001</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Visit ============================ -->
+  <section class="visit" id="visit" style="background:var(--white)">
+    <div class="container center">
+      <span class="eyebrow" style="justify-content:center">Visit Us</span>
+      <h2 class="section-title">Come pray with us</h2>
+      <p class="lead">You are always welcome at the Mankato Islamic Center. Here&rsquo;s how to find and reach us.</p>
+    </div>
+    <div class="container">
+      <div class="visit-grid">
+        <ul class="info-list">
+          <li>
+            <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg></span>
+            <div>
+              <b>Address</b>
+              <span>329 N Broad St, Mankato, MN 56001</span><br>
+              <a href="https://maps.google.com/?q=329+N+Broad+St,+Mankato,+MN+56001" target="_blank" rel="noopener">Get directions →</a>
+            </div>
+          </li>
+          <li>
+            <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3 4 7v2h16V7l-8-4zM6 11v6H4v2h16v-2h-2v-6h-2v6h-3v-6h-2v6H8v-6H6z"/></svg></span>
+            <div>
+              <b>Prayers</b>
+              <span>Open daily for all five prayers. See <a href="#prayer">today&rsquo;s times</a>.</span>
+            </div>
+          </li>
+          <li>
+            <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M2 5h20v14H2V5zm2 3v8h16V8l-8 5-8-5z"/></svg></span>
+            <div>
+              <b>Stay connected</b>
+              <span>Follow us on <a href="https://www.facebook.com/mankatoislamiccenter" target="_blank" rel="noopener">Facebook</a> for news and updates.</span>
+            </div>
+          </li>
+        </ul>
+        <div class="map-wrap">
+          <iframe
+            title="Map to Mankato Islamic Center"
+            src="https://www.google.com/maps?q=329%20N%20Broad%20St,%20Mankato,%20MN%2056001&output=embed"
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ Footer ============================ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div>
+          <a class="brand" href="#top" style="color:#fff">
+            <img src="/img/logo.png" alt="" style="width:46px;height:46px">
+            <span><b>Mankato Islamic Center</b><span>South Central Minnesota</span></span>
+          </a>
+          <p style="margin-top:1rem">A mosque and community center serving Muslims across the Greater Mankato area.</p>
+          <div class="socials">
+            <a href="https://www.facebook.com/mankatoislamiccenter" target="_blank" rel="noopener" aria-label="Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l.5-3H13V9.2c0-.9.3-1.5 1.6-1.5H17V5.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4 1.5-4 4.2V11H8v3h2.5v8H13z"/></svg>
+            </a>
+            <a href="https://maps.google.com/?q=329+N+Broad+St,+Mankato,+MN+56001" target="_blank" rel="noopener" aria-label="Map">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8 2 5 5 5 9c0 5 7 13 7 13s7-8 7-13c0-4-3-7-7-7zm0 9.5A2.5 2.5 0 1 1 12 6.5a2.5 2.5 0 0 1 0 5z"/></svg>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="#prayer">Prayer Times</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#events">Events</a></li>
+            <li><a href="#donate">Donate</a></li>
+            <li><a href="#visit">Visit Us</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="https://maps.google.com/?q=329+N+Broad+St,+Mankato,+MN+56001" target="_blank" rel="noopener">329 N Broad St<br>Mankato, MN 56001</a></li>
+            <li><a href="https://www.facebook.com/mankatoislamiccenter" target="_blank" rel="noopener">Facebook page</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        © <span id="year">2026</span> Mankato Islamic Center. All rights reserved.
+      </div>
+    </div>
   </footer>
 
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
-    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
-    crossorigin="anonymous"></script>
+  <!-- ============================ Scripts ============================ -->
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Mobile nav
+    (function () {
+      var toggle = document.getElementById('navToggle');
+      var links = document.getElementById('navLinks');
+      toggle.addEventListener('click', function () {
+        var open = links.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open);
+      });
+      links.addEventListener('click', function (e) {
+        if (e.target.closest('a')) {
+          links.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }
+      });
+    })();
+
+    // Live prayer times via the free Aladhan API
+    (function () {
+      var ORDER = ['Fajr', 'Sunrise', 'Dhuhr', 'Asr', 'Maghrib', 'Isha'];
+      var grid = document.getElementById('prayerGrid');
+      var note = document.getElementById('prayerNote');
+
+      function to12h(hm) {
+        var p = hm.split(':');
+        var h = parseInt(p[0], 10), m = p[1];
+        var ap = h >= 12 ? 'PM' : 'AM';
+        h = h % 12 || 12;
+        return { h: h, m: m, ap: ap };
+      }
+
+      function minutes(hm) {
+        var p = hm.split(':');
+        return parseInt(p[0], 10) * 60 + parseInt(p[1], 10);
+      }
+
+      function render(timings, dateInfo) {
+        // Determine current/next prayer (exclude Sunrise from "active")
+        var now = new Date();
+        var nowMin = now.getHours() * 60 + now.getMinutes();
+        var activeName = null, smallestFuture = Infinity, lastPassed = -1, lastPassedName = null;
+        ORDER.forEach(function (name) {
+          if (name === 'Sunrise') return;
+          var m = minutes(timings[name]);
+          if (m <= nowMin && m > lastPassed) { lastPassed = m; lastPassedName = name; }
+        });
+        activeName = lastPassedName || 'Isha';
+
+        grid.innerHTML = '';
+        ORDER.forEach(function (name) {
+          var t = to12h(timings[name]);
+          var tile = document.createElement('div');
+          tile.className = 'ptile' + (name === activeName ? ' active' : '');
+          tile.innerHTML = '<div class="name">' + name + '</div>' +
+            '<div class="time">' + t.h + ':' + t.m + ' <small>' + t.ap + '</small></div>';
+          grid.appendChild(tile);
+        });
+
+        if (dateInfo) {
+          var g = dateInfo.gregorian, h = dateInfo.hijri;
+          document.getElementById('gregDate').textContent =
+            g.weekday.en + ', ' + g.day + ' ' + g.month.en + ' ' + g.year;
+          document.getElementById('hijriDate').textContent =
+            h.day + ' ' + h.month.en + ' ' + h.year + ' AH';
+        }
+      }
+
+      var url = 'https://api.aladhan.com/v1/timingsByCity?city=Mankato&state=Minnesota&country=USA&method=2';
+      fetch(url)
+        .then(function (r) { return r.json(); })
+        .then(function (res) {
+          if (res && res.code === 200 && res.data) {
+            render(res.data.timings, res.data.date);
+          } else { throw new Error('bad response'); }
+        })
+        .catch(function () {
+          if (note) note.textContent = 'Live times unavailable right now — please check Facebook or call the masjid.';
+        });
+    })();
+  </script>
 </body>
 
 </html>
